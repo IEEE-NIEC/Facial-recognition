@@ -2,12 +2,21 @@
 import numpy as np
 import cv2
 import os
+
+import face_rec_functions
+
+
+
 datasetPath='/home/geekysethi/Desktop/face-rec/dataset'
 if not os.path.exists(datasetPath):
 	os.makedirs(datasetPath)
 
+face_rec_functions.createFile()
+name=input('Enter your name:')
 
-Id=input('enter your id:')
+Id=face_rec_functions.dumpData(name)
+print(Id)
+
 count=0
 
 
@@ -34,7 +43,7 @@ while(True):
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
 
-	elif count>20:
+	elif count>50:
 		break
 	
 cap.release()

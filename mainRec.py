@@ -1,11 +1,14 @@
 import cv2
 import numpy as np 
 import os
+import json
 
 recognizer = cv2.face.createLBPHFaceRecognizer()
 recognizer.load('training/training.yml')
 detector= cv2.CascadeClassifier('/home/geekysethi/opencv-3.2.0/data/haarcascades/haarcascade_frontalface_default.xml')
-
+with open('data.txt') as json_file:  
+	data = json.load(json_file)
+		
 cam =cv2.VideoCapture(0)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -23,9 +26,8 @@ while(True):
 		Id,conf=recognizer.predict(gray[y:y+h,x:x+w])
 
 		if(conf<50):
-			if(Id==1):
-
-				text='Ashish'
+	
+			text=data[str(Id)]
 		else:
 			text="Unknown"
 		print("ID",Id)
