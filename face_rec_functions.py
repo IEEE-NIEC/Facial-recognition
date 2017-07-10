@@ -12,6 +12,7 @@ def dumpData(name):
 	idd=1
 	with open('data.txt') as json_file:  
 		data = json.load(json_file)
+		
 	# print(data)
 	if (bool(data)==False):
 		data.update({1:name})
